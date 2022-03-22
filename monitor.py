@@ -61,7 +61,7 @@ class CheatMonitor():
         
     def wants_think(self,num):
         self.mutex.acquire()
-        self.othereat.wait_for(self.othereating)
+        self.othereat.wait_for(self.othereating,0.1)
         self.numeat.value-=1
         self.othereat.notify_all()
         self.mutex.release()
@@ -107,16 +107,4 @@ class AnticheatTable():
         self.nthinking.value+=1
         self.freefork.notify_all()
         self.chungry.notify_all()
-        self.mutex.release()   
- 
-
-
-
-
-
-
-
-
-
-
-       
+        self.mutex.release()
